@@ -9,7 +9,7 @@ const name = process.argv[3]
 const number = process.argv[4]
 
 const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
-
+mongoose.connect(url, { useNewUrlParser: true})
 const personSchema = new mongoose.Schema({
   name: String,
   number: String
