@@ -7,7 +7,7 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const Person = require('./models/person')
 const { response } = require('express')
 app.use(cors())
@@ -16,9 +16,9 @@ app.use(express.json())
 
 
 // DO NOT SAVE YOUR PASSWORD TO GITHUB!!
-const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+// const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
-mongoose.connect(url)
+// mongoose.connect(url)
 
 
 
