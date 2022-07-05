@@ -1,14 +1,15 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+
+require('dotenv').config()
+
 const express = require('express')
 const bodyParser = require('body-parser') 
 const app = express()
-const cors = require('cors')
 const morgan = require('morgan')
+const cors = require('cors')
+
 // const mongoose = require('mongoose')
 const Person = require('./models/person')
-
+const { response } = require('express')
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
@@ -19,40 +20,12 @@ app.use(express.json())
 
 // mongoose.connect(url)
 
-const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-  
- 
-})
+
 
 
 
 // const Person = mongoose.model('Person', personSchema)
 
-
-let persons = [
-    { 
-      "id": 1,
-      "name": "Arto Hellas", 
-      "number": "040-123456"
-    },
-    { 
-      "id": 2,
-      "name": "Ada Lovelace", 
-      "number": "39-44-5323523"
-    },
-    { 
-      "id": 3,
-      "name": "Dan Abramov", 
-      "number": "12-43-234345"
-    },
-    { 
-      "id": 4,
-      "name": "Mary Poppendieck", 
-      "number": "39-23-6423122"
-    }
-]
 
 
 morgan.token('body', function (req, res) { 
@@ -174,6 +147,12 @@ app.get('/api/persons/:id', (req, res, next) => {
       .catch(error => next(error))
   })
 
+  const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+  }
+  
+  // handler of requests with unknown endpoint
+  app.use(unknownEndpoint)
   
 
   const errorHandler = (error, request, response, next) => {
@@ -193,7 +172,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 
 
 
-const PORT = process.env.PORT
+  const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
