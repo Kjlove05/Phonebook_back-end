@@ -1,9 +1,12 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const express = require('express')
+const bodyParser = require('body-parser') 
 const app = express()
 const cors = require('cors')
 const morgan = require('morgan')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const Person = require('./models/person')
 
 app.use(cors())
@@ -12,9 +15,9 @@ app.use(express.json())
 
 
 // DO NOT SAVE YOUR PASSWORD TO GITHUB!!
-const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+// const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
-mongoose.connect(url)
+// mongoose.connect(url)
 
 const personSchema = new mongoose.Schema({
   name: String,
