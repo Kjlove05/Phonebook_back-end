@@ -16,7 +16,7 @@ app.use(express.json())
 
 
 // DO NOT SAVE YOUR PASSWORD TO GITHUB!!
-// const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+const url = `mongodb+srv://kj:fullstack@cluster0.zqeex.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
 mongoose.connect(url)
 
