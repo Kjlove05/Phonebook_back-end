@@ -70,9 +70,14 @@ app.get('/info', (request, response) => {
 app.get('/api/persons/:id', (req, res, next) => {
   const id = req.params.id
   Person.findById(req.params.id).then(person =>{
-      res.json(person)
+      if(person){
+          res.json(person)
+      }
+      else{
+          response.status(404).end()
+      }
   })
-  .catch(error => res.status(404).end())
+  .catch(error =>next(error))
 })
   
   app.delete('/api/persons/:id', (request, response, next) => {
